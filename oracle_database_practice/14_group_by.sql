@@ -1,0 +1,26 @@
+
+-- SCHEMA GROUP BY 
+-- FUNCIONES DE AGREGACIÓN 
+-- COUNT, SUM, AVG, MIN, MAX
+
+SELECT * FROM sh.products; 
+
+-- CANTIDAD DE PRODUCTOS QUE HAY POR CATEGORIAS 
+SELECT prod_category_desc, COUNT(prod_id) AS NUMERO_DE_PRODUCTOS 
+    FROM sh.products GROUP BY prod_category_desc; 
+
+-- PRECIOS MINIMOS DE LOS PRODUCTOS
+SELECT prod_category_desc, COUNT(prod_id) AS NUMERO_DE_PRODUCTOS, 
+AVG(prod_min_price) PRECIO_MEDIO_DE_PRODUCTOS
+    FROM sh.products GROUP BY prod_category_desc
+    ORDER BY AVG(prod_min_price); 
+
+SELECT * FROM sh.costs; 
+
+-- GROUP BY POR SUMAS - COSTOS Y GANANCIAS
+SELECT prod_id, SUM(unit_cost) AS SUMA_TOTAL_DE_COSTOS, 
+SUM(unit_price) AS SUMA_TOTAL_VENTAS 
+    FROM sh.costs WHERE unit_cost > 500
+    GROUP BY prod_id ORDER BY SUM(unit_price); 
+
+-- FALTAN HACER EJERCICIOS DE GROUP BY CON JOIN PARA AGREGAR COMPLEJIDAD A LA PRACTICA 
